@@ -76,9 +76,7 @@ function backtest(
     holding::Int,
     default_amt::Int,
     enter_market_function,
-    # enter_market_function::&dyn Fn(EnterMarketInfo) -> bool,
-    exit_market_function,
-    # exit_market_function: &dyn Fn(ExitMarketInfo) -> bool,
+    exit_market_function
 )::BacktestResults
 
     calculated_returns = 0.0
@@ -145,13 +143,13 @@ returns = backtest(
                enter_market_function,
                exit_market_function,
            )
-println(@btime backtest(
+@btime backtest(
     mydata,
     100,
     5,
     enter_market_function,
     exit_market_function,
-))
+)
 # out = TradeInputResults(returns)
 
 # println(out)
